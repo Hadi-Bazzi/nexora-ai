@@ -1,4 +1,3 @@
-# Nexora AI & Tech
 
 Nexora AI & Tech builds practical AI applications, AI agents, intelligent automation, and custom software. This repository contains the company website and its inquiry API.
 
