@@ -4,9 +4,13 @@ import express from 'express'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import { createClient } from '@supabase/supabase-js'
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import type { Database } from './database.types.js'
 import { inquirySchema } from './validation.js'
 
+const clientBuildPath = resolve(fileURLToPath(new URL('../dist', import.meta.url)))
+const clientIndexPath = resolve(clientBuildPath, 'index.html')
 const { SUPABASE_URL, SUPABASE_SECRET_KEY } = process.env
 if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
   throw new Error('SUPABASE_URL and SUPABASE_SECRET_KEY must be set in the server environment.')
@@ -58,6 +62,13 @@ app.post('/api/inquiries', async (request, response) => {
     return response.status(503).json({ error: 'We could not save your inquiry right now. Please try again shortly.' })
   }
   return response.status(201).json({ message: 'Your inquiry was saved.' })
+})
+
+app.use(express.static(clientBuildPath))
+app.get(/^(?!\/api(?:\/|$)).*/, (_request, response, next) => {
+  response.sendFile(clientIndexPath, (error) => {
+    if (error) next(error)
+  })
 })
 
 app.use((error: unknown, _request: express.Request, response: express.Response, next: express.NextFunction) => {
