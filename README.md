@@ -1,46 +1,81 @@
 # Nexora AI & Tech
 
-The website for Nexora AI & Tech, a studio focused on practical AI, automation, and custom software.
+Nexora AI & Tech is a studio website focused on practical AI, automation, and custom software.
 
-**GitHub repository:** [github.com/Hadi-Bazzi/nexora-ai](https://github.com/Hadi-Bazzi/nexora-ai)
+| | |
+| --- | --- |
+| Intended website | [www.nexora-ai.com](https://www.nexora-ai.com) *(deployment pending; this domain currently points to a GoDaddy landing page)* |
+| Source repository | [github.com/Hadi-Bazzi/nexora-ai](https://github.com/Hadi-Bazzi/nexora-ai) |
 
-The site includes a services gallery, project-planning tools, a contact form, and a small assistant demo. The assistant runs on preset rules rather than a live AI service. Portfolio and journal items are examples, not published client work.
+## Project overview
 
-## Getting started
+The site includes service information, a project-planning flow, a contact form, and an interactive assistant demo. The assistant uses local rules and is not connected to an AI provider. Portfolio and journal content are examples, not client case studies or published articles.
 
-You’ll need Node.js 20 or newer and npm.
+### Architecture
 
-1. Install the dependencies:
+- **Web client:** React, TypeScript, Vite, Tailwind CSS, Framer Motion, and GSAP.
+- **Inquiry API:** Express with server-side Zod validation, request-size limits, rate limiting, security headers, and origin checks.
+- **Data:** Supabase PostgreSQL. Inquiry records are private; the browser has no read access.
+- **Homepage video:** A rendered Remotion asset. The Remotion source is maintained separately in the neighboring `nexora-ai-tech-remotion` project.
 
-   ```sh
-   npm install
-   ```
+## Local development
 
-2. Copy `.env.example` to `.env` and add your Supabase project URL and server secret key. Keep the secret on the server; don’t put it in a `VITE_*` variable.
-3. Apply `supabase/migrations/202610210001_create_private_inquiries.sql` to your Supabase project.
-4. Start the app:
+### Requirements
 
-   ```sh
-   npm run dev
-   ```
+- Node.js `^20.19.0` or `>=22.12.0`
+- npm
+- A Supabase project to test inquiry submissions
 
-The website runs at `http://localhost:5173`, and the inquiry API runs on port `3001`. Vite forwards `/api` requests to the API while you’re developing.
-
-To preview just the website without setting up Supabase, run `npm run dev:client`. The rest of the site will work, but inquiry submissions need the API and database configured.
-
-## Project checks
+Install dependencies from the project directory:
 
 ```sh
-npm run typecheck
-npm run lint
-npm test
-npm run build
+npm ci
 ```
 
-## Before deploying
+Create a local environment file by copying `.env.example` to `.env`, then set `SUPABASE_URL` and `SUPABASE_SECRET_KEY` to values from your Supabase project. Keep the secret server-side; do not use a `VITE_*` variable for it.
 
-The website and Express API need to be hosted with `/api/*` routed to the API. Configure `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `PORT`, `TRUST_PROXY_HOPS`, and the deployed site’s exact origin in `ALLOWED_ORIGINS` as server environment variables. Apply the database migration before accepting inquiries.
+Apply the database migration:
 
-The inquiry table does not allow browser access, and the API does not provide an endpoint for reading inquiries. Email notifications, CRM connections, and other follow-up integrations still need to be set up separately.
+```text
+supabase/migrations/202610210001_create_private_inquiries.sql
+```
 
-The homepage video is rendered from the Remotion project in the neighboring `nexora-ai-tech-remotion` folder. That folder contains its own instructions for previewing and rendering the video.
+Start the client and API together:
+
+```sh
+npm run dev
+```
+
+The Vite client runs at `http://localhost:5173`; the Express API runs on port `3001`. During development, Vite proxies `/api` requests to the API. The API requires its Supabase environment variables at startup.
+
+To work on the client without configuring the API, run `npm run dev:client`. Inquiry submissions will not be available in that mode.
+
+## Available scripts
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the Vite client and Express API |
+| `npm run dev:client` | Start only the Vite client |
+| `npm run typecheck` | Type-check the client and server |
+| `npm run lint` | Run ESLint |
+| `npm test` | Build and run the server validation tests |
+| `npm run build` | Build the client and compile the server |
+| `npm start` | Start the compiled Express API |
+
+The client build is written to `dist/`; the compiled API is written to `server-dist/`.
+
+## Deployment
+
+The client and API are separate runtime components. Host the contents of `dist/` as the website, run the compiled API with `npm start`, and configure the host or reverse proxy to route `/api/*` requests to the API.
+
+Set these values as **server-side environment variables** in the API host:
+
+- `SUPABASE_URL`
+- `SUPABASE_SECRET_KEY`
+- `PORT`
+- `TRUST_PROXY_HOPS`
+- `ALLOWED_ORIGINS` — the exact origin of the deployed website
+
+Apply the Supabase migration to the production database before enabling inquiry submissions. Set `TRUST_PROXY_HOPS` to match the hosting proxy configuration. Do not commit `.env` files or expose the Supabase secret to the client.
+
+The Express API provides inquiry submission and a health check; it does not provide an endpoint for reading inquiry records. Email notifications, CRM integrations, and other downstream workflows are not configured.
