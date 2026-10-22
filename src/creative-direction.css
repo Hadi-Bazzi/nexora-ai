@@ -1,0 +1,215 @@
+/* Nexora's visual language: a quiet instrument panel built around a luminous signal core. */
+:root {
+  --nexora-ink: #070a14;
+  --nexora-panel: #0d1323;
+  --nexora-line: #8fa9d51f;
+  --nexora-blue: #8fc6ff;
+  --nexora-violet: #b3a3ff;
+  --nexora-mint: #9cebdc;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  border-bottom-color: #a5c4ff17;
+  background: #070a14eF;
+  box-shadow: 0 8px 32px #02050d40;
+}
+
+.brand-symbol {
+  border-radius: 11px 11px 11px 4px;
+  transform: rotate(-9deg);
+  box-shadow: 0 0 24px #7daaff1c, inset 0 0 14px #7098e01a;
+}
+
+.hero {
+  min-height: min(740px, calc(100svh - 78px));
+  grid-template-columns: minmax(0, .94fr) minmax(430px, 1.06fr);
+  column-gap: clamp(22px, 4.3vw, 66px);
+  padding-top: 48px;
+  padding-bottom: 78px;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.hero h1 {
+  max-width: 660px;
+  font-size: clamp(68px, 7.8vw, 106px);
+  line-height: .94;
+  letter-spacing: -.087em;
+  text-wrap: balance;
+}
+
+.hero-accent {
+  background-image: linear-gradient(100deg, #8ae1ed 0%, #8db8ff 44%, #bca2ff 100%);
+}
+
+.hero-lede {
+  max-width: 465px;
+  color: #b5c0d4;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.eyebrow {
+  letter-spacing: .13em;
+}
+
+.service-card {
+  position: relative;
+  min-height: 224px;
+  overflow: hidden;
+  border-radius: 12px 12px 12px 4px;
+  border-color: #7187aa38;
+  background: linear-gradient(145deg, #0f192c, #0a101d 72%);
+  transition: transform .24s, border-color .24s, background .24s, box-shadow .24s;
+}
+
+.service-card::after {
+  position: absolute;
+  top: -72px;
+  right: -76px;
+  width: 166px;
+  height: 166px;
+  border: 1px solid var(--card-accent);
+  border-radius: 50%;
+  opacity: .2;
+  box-shadow: 0 0 0 16px color-mix(in srgb, var(--card-accent), transparent 94%), 0 0 0 34px color-mix(in srgb, var(--card-accent), transparent 97%);
+  content: '';
+  pointer-events: none;
+  transition: transform .4s, opacity .3s;
+}
+
+.service-card:nth-child(1) { --card-accent: #83d4ee; }
+.service-card:nth-child(2) { --card-accent: #a69bff; }
+.service-card:nth-child(3) { --card-accent: #9fe3cb; }
+.service-card:nth-child(4) { --card-accent: #8daeff; }
+.service-card:nth-child(5) { --card-accent: #e2bb7b; }
+.service-card:nth-child(6) { --card-accent: #c8a1f6; }
+
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--card-accent), transparent 48%);
+  background: linear-gradient(145deg, #14213a, #0b1120 76%);
+  box-shadow: 0 18px 42px #02050d85;
+}
+
+.service-card:hover::after {
+  transform: scale(1.16);
+  opacity: .35;
+}
+
+.service-icon {
+  border-color: color-mix(in srgb, var(--card-accent), transparent 68%);
+  background: color-mix(in srgb, var(--card-accent), transparent 91%);
+  color: var(--card-accent);
+}
+
+.service-card h3,
+.service-card > p,
+.service-card-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.service-card h3 {
+  max-width: 260px;
+  font-size: 17px;
+  letter-spacing: -.035em;
+}
+
+.service-card > p {
+  max-width: 300px;
+  color: #a8b5ca;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.service-card-bottom {
+  color: #b6c6de;
+}
+
+.service-card-bottom a {
+  border: 1px solid #a9bbd92b;
+  border-radius: 7px;
+  background: #09101b9c;
+}
+
+.workflow-canvas {
+  border-radius: 14px 14px 14px 5px;
+  box-shadow: 0 22px 65px #02050d88, inset 0 1px #ffffff14;
+}
+
+.about-art {
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 16px 16px 16px 4px;
+}
+
+.about-art::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(180deg, #080d1b24 0%, #080d1b36 43%, #080d1bd9 100%), linear-gradient(90deg, #080d1b35, transparent 70%);
+  content: '';
+  pointer-events: none;
+}
+
+.about-art-grid,
+.about-rings,
+.about-art-tag,
+.about-art-caption {
+  z-index: 1;
+}
+
+.workflow-stage {
+  border-radius: 9px 9px 9px 3px;
+}
+
+.portfolio-card,
+.journal-card {
+  border-radius: 12px 12px 12px 4px;
+}
+
+.button-primary {
+  color: #08101e;
+  box-shadow: 0 8px 28px #6499ff30, inset 0 1px #ffffff74;
+}
+
+.button-quiet {
+  background: #0c1321;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    min-height: 630px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+    column-gap: 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(60px, 7.6vw, 80px);
+  }
+
+  .service-card {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 380px) {
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .service-card,
+  .service-card::after {
+    transition: none;
+  }
+}

@@ -1,0 +1,96 @@
+/* Shared type scale: tuned for a quick scan at normal viewing distance. */
+/* Clip horizontal overflow without creating a scroll container that disables sticky navigation. */
+.app-shell { overflow-x: clip; overflow-y: visible; }
+.site-header { z-index: 30; }
+
+body { font-size: 15px; }
+.main-nav > a { font-size: 12px; }
+.section-label { font-size: 10px; }
+.mini-overline { font-size: 10px; }
+.eyebrow { font-size: 10px; }
+.hero-lede, .section-heading > p { font-size: 16px; line-height: 1.75; }
+.hero-proof { font-size: 13px; }
+.hero-bottomline { font-size: 10px; }
+.trust-inner > span { font-size: 10px; }
+.trust-inner > strong { font-size: 16px; }
+.service-card h3 { font-size: 18px; }
+.service-card > p { font-size: 14px; line-height: 1.65; }
+.service-card-bottom { font-size: 11px; }
+.service-gallery-title > p { font-size: 14px; }
+.service-photo-caption strong { font-size: 14px; }
+.service-photo-caption small { font-size: 12px; }
+.service-photo-index, .service-photo-placeholder { font-size: 10px; }
+.service-gallery-note { font-size: 12px; }
+.solutions-intro > p { font-size: 16px; line-height: 1.7; }
+.solutions-footnote { font-size: 13px; }
+.panel-step, .panel-select-hint { font-size: 10px; }
+.need-option { font-size: 13px; }
+.approach-label { font-size: 10px; }
+.approach-chip { font-size: 11px; }
+.rec-empty { font-size: 13px; }
+.rec-item strong { font-size: 14px; }
+.rec-item p, .rec-next-step { font-size: 12px; }
+.rec-next-step b { font-size: 10px; }
+.portfolio-type { font-size: 10px; }
+.portfolio-description h3 { font-size: 20px; }
+.case-link { font-size: 13px; }
+.portfolio-focus > span { font-size: 9px; }
+.portfolio-focus > strong { font-size: 13px; }
+.portfolio-disclaimer { font-size: 12px; }
+.about-copy > p, .builder-intro > p, .contact-copy > p { font-size: 15px; line-height: 1.75; }
+.about-principles strong { font-size: 14px; }
+.process-step h3 { font-size: 16px; }
+.process-step p { font-size: 13px; line-height: 1.65; }
+.journal-meta { font-size: 10px; }
+.journal-card h3 { font-size: 20px; }
+.journal-card > p { font-size: 14px; line-height: 1.65; }
+.sample-label { font-size: 10px; }
+.field-label { font-size: 13px; }
+.step-help, .form-footnote { font-size: 12px; }
+.project-choice, .builder-form input, .builder-form textarea, .contact-form input, .contact-form textarea, .select-wrap select { font-size: 14px; }
+.form-actions .back-button { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid #34435d; border-radius: 7px; background: #0c1423; color: #d5def0; font-size: 14px; transition: border-color .18s, background .18s, color .18s; }
+.form-actions .back-button:hover:not(:disabled) { border-color: #7894c3; background: #152139; color: #fff; }
+.form-actions .back-button:disabled { cursor: not-allowed; opacity: .6; }
+.field-error { font-size: 12px; }
+.no-send-notice { font-size: 11px; }
+.footer-link-column > a { font-size: 13px; }
+.footer-heading { font-size: 10px; }
+.footer-social-note { font-size: 11px; }
+.footer-bottom { font-size: 10px; }
+
+.hero {
+  display: flex;
+  align-items: center;
+}
+.hero-content { width: min(100%, 700px); }
+
+@media (max-width: 1000px) {
+  .service-card > p { font-size: 13px; }
+  .need-option { font-size: 12px; }
+  .solutions-intro > p, .about-copy > p, .builder-intro > p, .contact-copy > p { font-size: 14px; }
+  .process-step h3 { font-size: 14px; }
+  .process-step p { font-size: 12px; }
+}
+
+@media (max-width: 700px) {
+  .hero { align-items: stretch; }
+  .mobile-menu-button { min-width: 44px; min-height: 44px; }
+  .main-nav > a:not(.nav-cta) { min-height: 44px; }
+  .hero-lede, .section-heading > p { font-size: 14px; }
+  .service-card h3 { font-size: 15px; }
+  .service-card > p { font-size: 12px; }
+  .need-option, .project-choice { font-size: 12px; }
+  .solutions-intro > p, .about-copy > p, .builder-intro > p, .contact-copy > p { font-size: 13px; }
+  .journal-card h3 { font-size: 18px; }
+  .journal-card > p { font-size: 13px; }
+  .process-step h3 { font-size: 13px; }
+  .process-step p { font-size: 11px; }
+  .field-label { font-size: 12px; }
+  .builder-form input, .builder-form textarea, .contact-form input, .contact-form textarea, .select-wrap select { font-size: 14px; }
+  .footer-link-column > a { font-size: 12px; }
+  .hero-bottomline { font-size: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-motion-background:not(.hero-motion-poster) { display: none; }
+}

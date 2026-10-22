@@ -1,0 +1,38 @@
+.scroll-visual-section { position: relative; height: 280svh; background: #0a0f24; }
+.scroll-visual-sticky { position: relative; isolation: isolate; width: 100%; height: 100svh; min-height: 560px; overflow: hidden; background: #0a0f24; }
+.scroll-visual-canvas, .scroll-visual-vignette { position: absolute; inset: 0; width: 100%; height: 100%; }
+.scroll-visual-placeholder .scroll-visual-sticky { position: sticky; top: 0; }
+.placeholder-network { position:absolute; inset:12% 8% 10% 35%; overflow:hidden; opacity:.78; background:radial-gradient(ellipse at 52% 48%,#253a826e,transparent 67%),linear-gradient(135deg,transparent 49.8%,#698cff25 50%,transparent 50.3%),linear-gradient(35deg,transparent 49.8%,#9c72ff22 50%,transparent 50.3%); }
+.placeholder-network span { position:absolute; width:16%; aspect-ratio:1.4; border:1px solid #a1b2ff54; border-radius:12px; background:linear-gradient(135deg,#7e96ff1d,#94aaff05); box-shadow:0 0 38px #596cfb13,inset 0 1px #ffffff15; transform:perspective(400px) rotateY(-11deg); }
+.placeholder-network span:nth-child(1) { left:4%; top:9%; }.placeholder-network span:nth-child(2) { left:36%; top:4%; }.placeholder-network span:nth-child(3) { left:68%; top:15%; }.placeholder-network span:nth-child(4) { left:15%; top:53%; }.placeholder-network span:nth-child(5) { left:48%; top:47%; }.placeholder-network span:nth-child(6) { left:77%; top:59%; }
+.scroll-visual-canvas { display: block; }
+.scroll-visual-vignette { z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(10,15,36,.57), rgba(10,15,36,.1) 64%, rgba(10,15,36,.19)), linear-gradient(0deg, rgba(10,15,36,.68), transparent 22%, transparent 78%, rgba(10,15,36,.4)); }
+.scroll-visual-copy { position: absolute; z-index: 2; left: clamp(24px,9vw,150px); top: 50%; width: min(500px,44vw); transform: translateY(-50%); pointer-events: none; }
+.visual-copy-block { position: absolute; top: 0; left: 0; width: 100%; color: #f2f4ff; visibility: hidden; }
+.reduced-motion-static .visual-copy-block:first-child { visibility: visible; }
+.visual-overline { display: flex; align-items: center; gap: 18px; margin-bottom: 24px; color: #a8b6ff; font: 600 10px/1.2 var(--mono,monospace); letter-spacing: .17em; }
+.visual-overline i { color: #7888c9; font-style: normal; }
+.visual-copy-block h2 { max-width: 500px; margin: 0; color: #f5f6ff; font-size: clamp(38px,5.3vw,74px); font-weight: 500; line-height: 1.02; letter-spacing: -.055em; }
+.visual-copy-block p { max-width: 390px; margin: 22px 0 0; color: rgba(220,226,255,.73); font-size: clamp(14px,1.2vw,17px); line-height: 1.75; }
+.visual-scroll-mark { position: absolute; z-index: 3; right: clamp(24px,5vw,72px); bottom: 32px; display: flex; align-items: center; gap: 11px; color: rgba(203,212,255,.66); font: 500 9px/1 var(--mono,monospace); letter-spacing: .16em; }
+.visual-scroll-mark span { width: 25px; height: 1px; background: linear-gradient(90deg,#718aff,transparent); }
+@media (max-width: 760px) {
+  .scroll-visual-section { height: 230svh; }
+  .scroll-visual-sticky { min-height: 540px; }
+  .scroll-visual-copy { left: 24px; top: auto; bottom: 19%; width: calc(100% - 48px); transform: none; }
+  .visual-copy-block h2 { max-width: 420px; font-size: clamp(38px,10vw,60px); }
+  .visual-copy-block p { max-width: 340px; margin-top: 16px; }
+  .visual-overline { margin-bottom: 17px; font-size: 9px; }
+  .visual-scroll-mark { bottom: 22px; right: 24px; }
+  .scroll-visual-vignette { background: linear-gradient(0deg,rgba(10,15,36,.88),rgba(10,15,36,.18) 55%,rgba(10,15,36,.38)); }
+}
+@media (max-height: 680px) and (min-width: 761px) { .scroll-visual-sticky { min-height: 520px; } .scroll-visual-copy { width: min(430px,40vw); } }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-visual-section, .scroll-visual-section.reduced-motion-static { height: 100svh; }
+  .scroll-visual-sticky { position: relative; min-height: 500px; }
+  .scroll-visual-placeholder .scroll-visual-sticky { position: relative; top: auto; }
+  .scroll-visual-section .visual-copy-block { visibility: hidden; }
+  .scroll-visual-section .visual-copy-block:first-child { visibility: visible; }
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto !important; } }

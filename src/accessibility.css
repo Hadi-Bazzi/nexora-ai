@@ -1,0 +1,16 @@
+/* Keep keyboard focus visible across links, buttons, and form controls. */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid #b8a8ff;
+  outline-offset: 3px;
+}
+
+/* These inherit-based font shorthands are intentionally expressed as longhands. */
+.float-card strong {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.no-send-notice {
+  font-size: 7px;
+  line-height: 1.6;
+}
